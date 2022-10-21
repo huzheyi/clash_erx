@@ -1,0 +1,235 @@
+# Clash.Meta
+
+# port: 7890
+# socks-port: 7891
+mixed-port: 7890
+redir-port: 7892
+# tproxy-port: 7893
+
+# authentication:
+#  - "user1:pass1"
+#  - "user2:pass2"
+
+geodata-mode: true         
+tcp-concurrent: true
+
+allow-lan: true
+bind-address:
+  '*'
+  # 192.168.122.11
+  # "[aaaa::a8aa:ff:fe09:57d8]"
+
+mode: rule
+
+log-level: error
+
+ipv6: true
+
+external-controller: 0.0.0.0:9090
+external-ui: /config/clash/ui
+
+secret: "password as you preferred"
+
+interface-name: pppoe0
+routing-mark: 6666
+
+#profile:
+#  store-selected: false
+#  store-fake-ip: true
+
+sniffer:
+  enable: true
+  sniffing:
+    - tls
+    - http
+  skip-domain:
+    - 'Mijia Cloud'
+    - 'dlg.io.mi.com'
+    - '+.apple.com'
+  # - '*.baidu.com'
+
+  force-domain:
+  # - '+'
+    - 'google.com'
+
+  #port-whitelist:
+  # - 80
+  # - 443
+  # - 8000-9000
+
+hosts:
+  # '*.clash.dev': 127.0.0.1
+  # '.dev': 127.0.0.1
+  # 'alpha.clash.dev': '::1'
+dns:
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: true
+  
+  default-nameserver:
+    - 119.29.29.29
+    - 8.8.8.8
+    
+  #nameserver-policy:
+  # 'www.baidu.com': 'https://223.5.5.5/dns-query'
+  # '+.internal.crop.com': '114.114.114.114'
+  
+  enhanced-mode: redir-host
+  fake-ip-range: 198.18.0.1/16
+  # use-hosts: true
+  
+  # fake-ip-filter:
+  #   - '*.lan'
+  #   - '*.linksys.com'
+  #   - '+.pool.ntp.org'
+  #   - localhost.ptlogin2.qq.com
+  
+  #proxy-server-nameserver:
+  # - tls://1.0.0.1:853
+
+  nameserver:
+    - tls://223.5.5.5:853
+    - https://doh.pub/dns-query
+    # - dhcp://pppoe0
+    
+  fallback:
+    - tcp://208.67.222.222:443
+    - quic://a.passcloud.xyz:784
+    - 'tls://8.8.4.4:853#DNSg'
+    - 'tls://1.1.1.1:853#DNSg'
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    geosite:
+      - gfw
+    ipcidr:
+      - 0.0.0.0/8
+      - 10.0.0.0/8
+      - 100.64.0.0/10
+      - 127.0.0.0/8
+      - 169.254.0.0/16
+      - 172.16.0.0/12
+      - 192.0.0.0/24
+      - 192.0.2.0/24
+      - 192.88.99.0/24
+      - 192.168.0.0/16
+      - 198.18.0.0/15
+      - 198.51.100.0/24
+      - 203.0.113.0/24
+      - 224.0.0.0/4
+      - 233.252.0.0/24
+      - 240.0.0.0/4
+      - 255.255.255.255/32
+      - 74.125.127.102/32
+      - 74.125.155.102/32
+      - 74.125.39.102/32
+      - 74.125.39.113/32
+      - 209.85.229.138/32
+      - 128.121.126.139/32
+      - 159.106.121.75/32
+      - 169.132.13.103/32
+      - 192.67.198.6/32
+      - 202.106.1.2/32
+      - 202.181.7.85/32
+      - 203.161.230.171/32
+      - 203.98.7.65/32
+      - 207.12.88.98/32
+      - 208.56.31.43/32
+      - 209.145.54.50/32
+      - 209.220.30.174/32
+      - 209.36.73.33/32
+      - 211.94.66.147/32
+      - 213.169.251.35/32
+      - 216.221.188.182/32
+      - 216.234.179.13/32
+      - 37.61.54.158/32
+      - 4.36.66.178/32
+      - 46.82.174.68/32
+      - 59.24.3.173/32
+      - 64.33.88.161/32
+      - 64.33.99.47/32
+      - 64.66.163.251/32
+      - 65.104.202.252/32
+      - 65.160.219.113/32
+      - 66.45.252.237/32
+      - 69.55.52.253/32
+      - 72.14.205.104/32
+      - 72.14.205.99/32
+      - 78.16.49.15/32
+      - 8.7.198.45/32
+      - 93.46.8.89/32
+      - 37.61.54.158/32
+      - 190.93.247.4/32
+      - 190.93.246.4/32
+      - 190.93.245.4/32
+      - 190.93.244.4/32
+      - 65.49.2.178/32
+      - 189.163.17.5/32
+      - 23.89.5.60/32
+      - 49.2.123.56/32
+      - 54.76.135.1/32
+      - 77.4.7.92/32
+      - 118.5.49.6/32
+      - 159.24.3.173/32
+      - 188.5.4.96/32
+      - 197.4.4.12/32
+      - 220.250.64.24/32
+    domain:
+      - '+.google.com'
+      - '+.facebook.com'
+      - '+.youtube.com'
+
+proxies:  
+
+  - name: "vless"
+    type: vless
+    server: 
+    port: 
+    uuid: 
+    network: 
+    servername: 
+    flow: 
+    # skip-cert-verify: true
+
+  - name: "ss"
+    type: ss
+    server: 
+    port: 
+    cipher: 
+    password: ""
+
+proxy-groups:
+  - name: "DNSg"
+    type: select
+    proxies:
+      - PROXY
+
+  - name: "PROXY" 
+    type: select
+    proxies:
+      - vless
+      - ss
+
+    # tolerance: 150
+    # lazy: true
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+    disable-udp: true
+    # filter: 'HK'
+    
+rules:
+  #- SRC-IP-CIDR,192.168.1.100/32,DIRECT
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,icloud@cn,DIRECT
+  - GEOSITE,apple@cn,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,microsoft@cn,DIRECT
+  - GEOSITE,facebook,PROXY
+  - GEOSITE,youtube,PROXY
+  - GEOSITE,geolocation-cn,DIRECT
+  - GEOSITE,geolocation-!cn,PROXY
+  - GEOIP,telegram,PROXY,no-resolve
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,cn,DIRECT
+  - MATCH,PROXY
